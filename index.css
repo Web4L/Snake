@@ -13,8 +13,8 @@ body {
 	background-color: #ccc;
 	width: 100vmin;
 	height: 100vmin;
-	grid-template-columns: repeat(21, 1fr);
-	grid-template-rows: repeat(21, 1fr);
+	grid-template-columns: repeat(var(--width), 1fr);
+	grid-template-rows: repeat(var(--height), 1fr);
 }
 
 .snake-body {

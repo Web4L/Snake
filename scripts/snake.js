@@ -1,4 +1,6 @@
-export let snakeSpeed = 2;
+import { screenWidth, screenHeight } from "./index.js";
+
+export let snakeSpeed = 3;
 let direction = "right";
 
 let snakeBody = [
@@ -56,10 +58,10 @@ export function updateSnake() {
 
 	// check if the snake has hit the wall
 	if (
-		snakeBody[0].x < 0 ||
-		snakeBody[0].x > 21 ||
-		snakeBody[0].y < 0 ||
-		snakeBody[0].y > 21
+		snakeBody[0].x < 1 ||
+		snakeBody[0].x > screenWidth ||
+		snakeBody[0].y < 1 ||
+		snakeBody[0].y > screenHeight
 	) {
 		window.alert("You lose!");
 		window.location.replace(

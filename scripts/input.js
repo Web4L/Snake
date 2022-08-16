@@ -16,5 +16,17 @@ document.addEventListener("keydown", (event) => {
 		case "ArrowRight":
 			setDirection("right");
 			break;
+		case "w":
+			setDirection("up");
+			break;
+		case "s":
+			setDirection("down");
+			break;
+		case "a":
+			setDirection("left");
+			break;
+		case "d":
+			setDirection("right");
+			break;
 	}
 });

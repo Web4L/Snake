@@ -1,9 +1,15 @@
 import { getSnakeBody, increaseSnakeSpeed, addSegment } from "./snake.js";
+import { screenWidth, screenHeight } from "./index.js";
+
+const foodSpeedIncrease = 0.1;
 
 let x;
 let y;
 
 export function drawFood(gameBoard) {
+	if (x === undefined || y === undefined) {
+		generateNewFood();
+	}
 	const foodElement = document.createElement("div");
 	foodElement.classList.add("food");
 	foodElement.style.gridColumnStart = x;
@@ -15,8 +21,10 @@ export function updateFood() {
 	const snakeHead = getSnakeBody()[0];
 	if (snakeHead.x === x && snakeHead.y === y) {
 		generateNewFood();
-		increaseSnakeSpeed(0.1);
+		increaseSnakeSpeed(foodSpeedIncrease);
 		addSegment();
+	} else {
+		console.log(x, y, snakeHead.x, snakeHead.y);
 	}
 }
 
@@ -25,13 +33,17 @@ function getOpenCells() {
 
 	const openCells = [];
 
-	for (let x = 0; x < 21; x++) {
-		mainLoop: for (let y = 0; y < 21; y++) {
-			for (let i = 0; i < snakeBody.length; i++) {
-				if (snakeBody[i].x === x && snakeBody[i].y === y)
-					continue mainLoop;
+	for (let i = 1; i < screenWidth; i++) {
+		for (let j = 1; j < screenHeight; j++) {
+			let isOpen = true;
+			for (let k = 0; k < snakeBody.length; k++) {
+				if (snakeBody[k].x === i && snakeBody[k].y === j) {
+					isOpen = false;
+				}
 			}
-			openCells.push({ x, y });
+			if (isOpen) {
+				openCells.push({ x: i, y: j });
+			}
 		}
 	}
 
@@ -40,9 +52,10 @@ function getOpenCells() {
 
 function generateNewFood() {
 	const openCells = getOpenCells();
+	if (openCells.length === 0) {
+		return;
+	}
 	const coords = openCells[Math.floor(Math.random() * openCells.length)];
 	x = coords.x;
 	y = coords.y;
 }
-
-generateNewFood();
