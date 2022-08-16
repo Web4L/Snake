@@ -1,1 +1,1 @@
-A glitchy snake game I made in less than a couple of days
+A glitchy snake game I made in a couple of days
