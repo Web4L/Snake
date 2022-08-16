@@ -23,8 +23,6 @@ export function updateFood() {
 		generateNewFood();
 		increaseSnakeSpeed(foodSpeedIncrease);
 		addSegment();
-	} else {
-		console.log(x, y, snakeHead.x, snakeHead.y);
 	}
 }
 
