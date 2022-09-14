@@ -46,12 +46,7 @@ export function updateSnake() {
 			snakeBody[0].x === snakeBody[i].x &&
 			snakeBody[0].y === snakeBody[i].y
 		) {
-			window.alert("You lose!");
-			window.location.replace(
-				window.location.pathname +
-					window.location.search +
-					window.location.hash
-			);
+			lose();
 			return;
 		}
 	}
@@ -63,14 +58,16 @@ export function updateSnake() {
 		snakeBody[0].y < 1 ||
 		snakeBody[0].y > screenHeight
 	) {
-		window.alert("You lose!");
-		window.location.replace(
-			window.location.pathname +
-				window.location.search +
-				window.location.hash
-		);
+		lose();
 		return;
 	}
+}
+
+function lose() {
+	window.alert(`You lose! Score: ${snakeBody.length - 3}`);
+	window.location.replace(
+		window.location.pathname + window.location.search + window.location.hash
+	);
 }
 
 export function drawSnake(gameBoard) {
